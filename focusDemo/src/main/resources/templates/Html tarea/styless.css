@@ -1,0 +1,123 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0e9ff;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background-color: #ffffff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    background: linear-gradient(135deg, #004b91, #0a84e8);
+    padding: 20px;
+    color: white;
+    text-align: center;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.button-container button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #004b91;
+    color: white;
+    cursor: pointer;
+}
+
+.tab-menu {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #e6dbfa;
+    padding: 10px 0;
+}
+
+.tab {
+    padding: 10px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.tab.active {
+    background-color: #dab5fc;
+    border-radius: 5px;
+}
+
+.task-list {
+    padding: 20px;
+}
+
+.task {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.task-icon {
+
+    width: 50px;
+    height: 50px;
+    background-color: #cccccc;
+    border-radius: 50%;
+    margin-right: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 8px; /* Añade espacio interno */
+}
+
+.task-icon img {
+    width: 100%;
+    height: auto;
+    object-fit: contain; /* Ajusta la imagen al contenedor */
+}
+
+.task-content h3 {
+    margin: 0;
+}
+
+.task-checkbox {
+    margin-left: auto;
+}
+
+.view-more {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #004b91;
+    color: white;
+    text-align: center;
+    border: none;
+    border-radius: 0 0 15px 15px;
+    cursor: pointer;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    background-color: #f0e9ff;
+    border-top: 1px solid #ccc;
+}
+
+.footer button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
