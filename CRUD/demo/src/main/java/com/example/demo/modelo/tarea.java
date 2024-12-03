@@ -18,22 +18,20 @@ public class tarea {
     private String fecha_limite;
     private String estado;
     private int puntos_tarea;
-    private String fecha_creacion;
-
+   
     public tarea(){
 
     }
 
 
-public tarea(int id, String titulo, String descripcion, String fecha_limite, String estado, int puntos_tarea,
-            String fecha_creacion) {
+public tarea(int id, String titulo, String descripcion, String fecha_limite, String estado, int puntos_tarea) {
         this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.fecha_limite = fecha_limite;
         this.estado = estado;
         this.puntos_tarea = puntos_tarea;
-        this.fecha_creacion = fecha_creacion;
+       
     }
 
 
@@ -86,12 +84,6 @@ public tarea(int id, String titulo, String descripcion, String fecha_limite, Str
         this.puntos_tarea = puntos_tarea;
     }
 
-    public String getFecha_creacion() {
-        return fecha_creacion;
-    }
-
-    public void setFecha_creacion(String fecha_creacion) {
-        this.fecha_creacion = fecha_creacion;
-    }
+   
 
 }
