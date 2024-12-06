@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tareas</title>
-    <link rel="stylesheet" href="styless.css">
+    <link rel="stylesheet" href="/css/estilos.css">
 </head>
 <body>
     <div class="container">
@@ -13,8 +13,8 @@
             <h1>Tareas</h1>
             <p class="subtitle">Subtítulo</p>
             <div class="button-container">
-                <button id="addTaskButton"> Añadir tarea + </button>
-                <button id="deleteTaskButton"> Eliminar tarea ✖ </button>
+                <button id="btnAgregarTarea"> Añadir tarea + </button>
+                <button id="btnBorrarTarea">Borrar tarea x</button>
             </div>
             <p id="points" style="margin-top: 10px;">Puntos: 0</p>
         </div>
@@ -22,118 +22,38 @@
             <button class="tab active" id="doneTab">✔ Hechas</button>
             <button class="tab" id="toDoTab">Por hacer</button>
         </div>
-        <div class="task-list" id="taskList">
-            <!-- Tareas generadas dinámicamente aquí -->
+        <div class="contenedor-tareas">
+            <h2>Por hacer</h2>
+            <div id="tareasPorHacer" class="seccion-tareas">
+                
+            </div>
         </div>
+
+        <div class="contenedor-tareas">
+            <h2>Hechas</h2>
+            <div id="tareasHechas" class="seccion-tareas">
+
+            </div>
+        </div>
+    <!--<div class="contenedorTarea" id="taskList">
+        <ul>
+            <li th:each="tarea : ${tareas}">
+                <p th:text="${tarea.titulo}"></p>
+                <p th:text="${tarea.descripcion}"></p>
+                <button>Marcar como realizada</button>
+            </li>
+        </ul>
+
+       </div>
+       -->  
         <button class="view-more">Ver más</button>
         <div class="footer">
-            <button>Inicio</button>
+            <button onclick="location.href='index.html'">Inicio</button>
             <button>Historial</button>
-            <button>Recompensas</button>
+            <button onclick="location.href='recompensas.html'">Recompensas</button>
         </div>
     </div>
 
-    <script>
-        const addTaskButton = document.getElementById('addTaskButton');
-        const deleteTaskButton = document.getElementById('deleteTaskButton');
-        const taskList = document.getElementById('taskList');
-        const pointsDisplay = document.getElementById('points');
-        let points = 0;
-
-        // Añadir tarea
-        addTaskButton.addEventListener('click', () => {
-            const taskName = prompt("Ingrese el nombre de la tarea:");
-            const taskDescription = prompt("Ingrese una descripción para la tarea:");
-            if (taskName && taskDescription) {
-                const taskElement = createTaskElement(taskName, taskDescription);
-                taskList.appendChild(taskElement);
-            } else {
-                alert("Debe ingresar tanto el nombre como la descripción de la tarea.");
-            }
-        });
-
-        // Eliminar tarea seleccionada
-        deleteTaskButton.addEventListener('click', () => {
-            const tasks = document.querySelectorAll('.task');
-            const selectedTasks = Array.from(tasks).filter(task => task.querySelector('.task-checkbox').checked);
-            if (selectedTasks.length === 0) {
-                alert("No hay tareas seleccionadas para eliminar.");
-            } else {
-                selectedTasks.forEach(task => task.remove());
-            }
-        });
-
-        // Cambiar entre tabs (Hechas / Por hacer)
-        document.getElementById('doneTab').addEventListener('click', () => {
-            switchTab('done');
-        });
-
-        document.getElementById('toDoTab').addEventListener('click', () => {
-            switchTab('toDo');
-        });
-
-        // Función para cambiar de tab
-        function switchTab(tab) {
-            const tasks = document.querySelectorAll('.task');
-            tasks.forEach(task => {
-                const checkbox = task.querySelector('.task-checkbox');
-                if (tab === 'done') {
-                    task.style.display = checkbox.checked ? 'flex' : 'none';
-                } else {
-                    task.style.display = !checkbox.checked ? 'flex' : 'none';
-                }
-            });
-
-            document.querySelectorAll('.tab').forEach(tabButton => tabButton.classList.remove('active'));
-            document.getElementById(tab === 'done' ? 'doneTab' : 'toDoTab').classList.add('active');
-        }
-
-        // Crear elemento de tarea
-        function createTaskElement(name, description, fecha_limite) {
-            const task = document.createElement('div');
-            task.classList.add('task');
-
-            const fechaLimiteTarea = document.createElement('div');
-            fechaLimiteTarea.classList.add("apartado-fecha");
-            const fecha = document.createElement('p');
-            fecha.textContent = `Fecha límite: ${fecha_limite}`;
-            fechaLimiteTarea.appendChild(fecha);
-
-
-            const taskIcon = document.createElement('div');
-            taskIcon.classList.add('task-icon');
-            const iconImg = document.createElement('img');
-            iconImg.src = 'libros.png'; // Cambiar icono según tus necesidades
-            iconImg.alt = 'Icono de tarea';
-            taskIcon.appendChild(iconImg);
-
-            const taskContent = document.createElement('div');
-            taskContent.classList.add('task-content');
-            const taskTitle = document.createElement('h3');
-            taskTitle.textContent = name;
-            const taskDesc = document.createElement('p');
-            taskDesc.textContent = description;
-            taskContent.appendChild(taskTitle);
-            taskContent.appendChild(taskDesc);
-
-            const boton = document.createElement('Button');
-            boton.textContent = "Marcar tarea como completada";
-            boton.classList.add('task-button');
-            boton.addEventListener('click', () => {
-                if (boton.checked) {
-                    points += 10; // Agregar puntos por completar una tarea
-                } else {
-                    points -= 10; // Restar puntos si se desmarca
-                }
-                pointsDisplay.textContent = `Puntos: ${points}`;
-            });
-            task.appendChild(fechaLimiteTarea);
-            task.appendChild(taskIcon);
-            task.appendChild(taskContent);
-            task.appendChild(boton);
-
-            return task;
-        }
-    </script>
+    <script src="/scripts/app.js"> </script>
 </body>
 </html>
