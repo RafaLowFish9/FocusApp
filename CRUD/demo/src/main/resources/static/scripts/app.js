@@ -4,13 +4,20 @@ const API_URL = "/api/tareas";
 document.addEventListener("DOMContentLoaded", () => {
 const contenedorTarea = document.getElementsByClassName('contenedor-tareas');
 const btnBorrarTarea = document.getElementById('btnBorrarTarea');
-
+const puntosPorTarea = 10;
+ //Puntos del usuario
+ let puntosAcumulados = 0;
+//Elemento donde se muestran los puntos
+const puntosUsuario = document.getElementById('points');
 
 document.getElementById("btnAgregarTarea").addEventListener("click", () => {
     const titulo = prompt("Introduzca el nombre de la tarea");
     const descripcion = prompt("Introduzca una descripción de la tarea");
     const fecha_limite = prompt("Introduzca una fecha límite");
     let estado = "Por hacer";
+   
+    
+   
 
     if(titulo && descripcion) {
         fetch(API_URL, {
@@ -18,7 +25,7 @@ document.getElementById("btnAgregarTarea").addEventListener("click", () => {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ titulo, descripcion, fecha_limite, estado, completada: false})
+            body: JSON.stringify({ titulo, descripcion, fecha_limite, estado, puntosPorTarea,completada: false})
         }) 
         .then(response => response.json())
         .then(tarea => {
@@ -90,6 +97,8 @@ document.getElementById("btnAgregarTarea").addEventListener("click", () => {
         // Mover visualmente la tarea
         if (nuevoEstado === "hecha") {
             contenedorHechas.appendChild(tareaItem);
+            puntosAcumulados += puntosPorTarea;
+            puntosUsuario.textContent = `Puntos: ${puntosAcumulados}`
         } else {
             contenedorPorHacer.appendChild(tareaItem);
         }
